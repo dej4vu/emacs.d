@@ -1,0 +1,13 @@
+;;; material-theme-autoloads.el --- automatically extracted autoloads
+;;
+;;; Code:
+
+
+(provide 'material-theme-autoloads)
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; no-update-autoloads: t
+;; coding: utf-8
+;; End:
+;;; material-theme-autoloads.el ends here
