@@ -15,8 +15,7 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (require 'cl)
-(defvar package-list)
-(setq init-packages-list '(evil 
+(defvar init-packages-list '(evil 
 					 go-mode
 					 go-eldoc
 					 flycheck
@@ -30,7 +29,8 @@
 					 monokai-theme
 					 smex
 					 neotree
-					 ))
+					 protobuf-mode
+					 ) "default packages")
 
 (defun init-packages-installed-p ()
   "Check if all packages in `init-package-list' are installed."
@@ -38,11 +38,10 @@
 (defun install-init-packages ()
   (unless (init-packages-installed-p)
     (package-refresh-contents)
-(dolist (package init-packages-list)
-  (when (not (package-installed-p package))
-	(package-install package)
-	)
-)))
+	(dolist (package init-packages-list)
+		(when (not (package-installed-p package))
+		(package-install package)
+		))))
 (install-init-packages)
 ;;disable menu-bar-mode
 (menu-bar-mode 0)
@@ -96,7 +95,6 @@
 (add-hook 'go-mode-hook 'company-mode)
 (add-hook 'go-mode-hook (lambda ()
 						    (set (make-local-variable 'company-backends) '(company-go))
-							;;(define-key map (kbd "C-c C-o") 'godef-jump-other-window)
 							  (local-set-key (kbd "C-c C-o") 'godef-jump-other-window)
 							  (company-mode 1)
 							  (flycheck-mode 1)
@@ -123,6 +121,15 @@
                                    (smex-major-mode-commands)))
 
 (global-set-key (kbd "C-c h i") 'helm-semantic-or-imenu)
+
+(defun find-user-init-file ()
+  "Edit the `user-init-file', in another window."
+  (interactive)
+  (find-file-other-window user-init-file))
+
+;;(global-set-key [f2] 'find-user-init-file)
+(global-set-key (kbd "C-x c") 'find-user-init-file)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -135,12 +142,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(defun find-user-init-file ()
-  "Edit the `user-init-file', in another window."
-  (interactive)
-  (find-file-other-window user-init-file))
-
-;;(global-set-key [f2] 'crux-find-user-init-file)
-(global-set-key (kbd "C-x c") 'find-user-init-file)
-
