@@ -121,6 +121,7 @@
                                    (smex-major-mode-commands)))
 
 (global-set-key (kbd "C-c h i") 'helm-semantic-or-imenu)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (defun find-user-init-file ()
   "Edit the `user-init-file', in another window."
