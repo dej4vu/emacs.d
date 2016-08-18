@@ -5,11 +5,14 @@
 ;; |\/|  /\  |\ |  /\  / _` |__   |\/| |__  |\ |  |
 ;; |  | /~~\ | \| /~~\ \__> |___  |  | |___ | \|  |
 (require 'package) ;; You might already have this line
-(add-to-list 'package-archives
-			 '("melpa" . "https://melpa.org/packages/"))
+;;(add-to-list 'package-archives
+			 ;;'("melpa" . "https://melpa.org/packages/"))
+(setq package-archives '(
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 (when (< emacs-major-version 24)
     ;; For important compatibility libraries like cl-lib
-	(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+	;;(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+	(add-to-list 'package-archives '("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 (package-initialize) ;; You might already have this line
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -87,7 +90,7 @@
 							  (local-set-key (kbd "C-c C-o") 'godef-jump-other-window)
 							  (company-mode 1)
 							  (flycheck-mode 1)
-							  (linum-mode 1)
+							  ;(linum-mode 1)
 							  ))
 ;;run gofmt on the current buffer when saving:
 (add-hook 'before-save-hook 'gofmt-before-save)
