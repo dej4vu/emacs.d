@@ -19,7 +19,7 @@
 (require 'cl)
 (defvar init-packages-list 
   '(evil go-mode go-eldoc flycheck company company-go yasnippet which-key helm-core helm helm-smex
-		 monokai-theme color-theme-solarized smex protobuf-mode yaml-mode elisp-format) 
+		 monokai-theme color-theme-solarized smex protobuf-mode yaml-mode elisp-format rainbow-delimiters) 
   "default packages")
 
 (defun init-packages-installed-p () 
@@ -116,6 +116,10 @@
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 (require 'elisp-format)
+
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(outline-minor-mode t)
+(outline-minor-mode nil)
 
 (defun find-user-init-file () 
   "Edit the `user-init-file', in another window." 
