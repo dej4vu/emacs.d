@@ -30,8 +30,10 @@
 					 helm
 					 helm-smex
 					 monokai-theme
+					 color-theme-solarized
 					 smex
 					 protobuf-mode
+					 yaml-mode
 					 ) "default packages")
 
 (defun init-packages-installed-p ()
@@ -58,13 +60,20 @@
 (require 'evil)
 (evil-mode 1)
 
+
 ;;yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
 
 
 ;;set monokai theme
-(load-theme 'monokai t)
+;;(load-theme 'monokai t)
+
+;;set solarized theme
+(set-frame-parameter nil 'background-mode 'dark)
+(set-terminal-parameter nil 'background-mode 'dark)
+;;(setq solarized-termcolors 256)
+(load-theme 'solarized t)
 
 ;;set electric-pair-mode on
 (electric-pair-mode 1)
@@ -73,7 +82,7 @@
 ;;turn off inhabit-splash-screen
 (setq inhabit-splash-screen 1)
 
-(setenv "GOPATH" "/data/workspace")
+;;(setenv "GOPATH" "/data/workspace")
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 (require 'which-key)
@@ -114,6 +123,9 @@
 
 (global-set-key (kbd "C-c h i") 'helm-semantic-or-imenu)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 (defun find-user-init-file ()
   "Edit the `user-init-file', in another window."
