@@ -7,29 +7,56 @@
 (require 'package) ;; You might already have this line
 ;;(add-to-list 'package-archives
 ;;'("melpa" . "https://melpa.org/packages/"))
-(setq package-archives '(("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+(setq package-archives '(("melpa" . "http://mirrors.163.com/elpa/melpa/")))
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   ;;(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-  (add-to-list 'package-archives '("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+  (add-to-list 'package-archives
+			   '("gnu" . "http://mirrors.163.com/elpa/gnu/")))
 (package-initialize) ;; You might already have this line
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (require 'cl)
-(defvar init-packages-list 
-  '(evil go-mode go-eldoc flycheck company company-go yasnippet which-key helm-core helm helm-smex
-		 monokai-theme color-theme-solarized smex protobuf-mode yaml-mode elisp-format rainbow-delimiters) 
+(defvar init-packages-list '(
+							 evil
+							 go-mode
+							 go-eldoc
+							 flycheck
+							 company
+							 company-go
+							 yasnippet
+							 which-key
+							 helm-core
+							 helm
+							 helm-smex
+							 monokai-theme
+							 color-theme-solarized
+							 smex
+							 protobuf-mode
+							 yaml-mode
+							 elisp-format
+							 rainbow-delimiters
+							 emmet-mode
+							 dockerfile-mode
+							 fzf
+							 clang-format
+							 srefactor
+							 markdown-mode
+							 ensime
+							 go-add-tags
+							 go-fill-struct
+							 )
   "default packages")
 
-(defun init-packages-installed-p () 
+(defun init-packages-installed-p ()
   "Check if all packages in `init-package-list' are installed."
   (every #'package-installed-p init-packages-list))
-(defun install-init-packages () 
-  (unless (init-packages-installed-p) 
-	(package-refresh-contents) 
-	(dolist (package init-packages-list) 
-	  (when (not (package-installed-p package)) 
+(defun install-init-packages ()
+  (unless (init-packages-installed-p)
+	(package-refresh-contents)
+	(dolist (package init-packages-list)
+	  (when (not (package-installed-p package))
 		(package-install package)))))
 (install-init-packages)
 ;;disable menu-bar-mode
@@ -55,9 +82,11 @@
 ;;(load-theme 'monokai t)
 
 ;;set solarized theme
-(set-frame-parameter nil 'background-mode 'dark)
-(set-terminal-parameter nil 'background-mode 'dark)
-;;(setq solarized-termcolors 256)
+(set-frame-parameter nil 'background-mode
+					 'dark)
+(set-terminal-parameter nil 'background-mode
+						'dark)
+(setq solarized-termcolors 256)
 (load-theme 'solarized t)
 
 ;;set electric-pair-mode on
@@ -79,41 +108,53 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (require 'company-go)					;load company-go mode
 (add-hook 'go-mode-hook 'company-mode)
-(add-hook 'go-mode-hook (lambda () 
-						  (set (make-local-variable 'company-backends) 
-							   '(company-go)) 
-						  (local-set-key (kbd "C-c C-o") 'godef-jump-other-window) 
-						  (company-mode 1) 
-						  (flycheck-mode 1)
+(add-hook 'go-mode-hook
+		  (lambda ()
+			(set (make-local-variable 'company-backends)
+				 '(company-go))
+			(local-set-key (kbd "C-c C-o")
+						   'godef-jump-other-window)
+			(company-mode 1)
+			(flycheck-mode 1)
 										;(linum-mode 1)
-						  ))
+			))
 ;;run gofmt on the current buffer when saving:
 (add-hook 'before-save-hook 'gofmt-before-save)
 ;;enalble flycheck
 ;;(add-hook 'after-init-hook #'global-flycheck-mode)
 
+;;run clang-format on the current buffer when saving:
+(add-hook 'protobuf-mode
+		  '(lambda ()
+			 (add-hook 'before-save-hook 'clang-format-buffer)))
+
 ;;smex setting
-(global-set-key [(meta x)] 
-				(lambda () 
-				  (interactive) 
-				  (or (boundp 'smex-cache) 
-					  (smex-initialize)) 
-				  (global-set-key [(meta x)] 'smex) 
+(global-set-key [(meta x)]
+				(lambda ()
+				  (interactive)
+				  (or (boundp 'smex-cache)
+					  (smex-initialize))
+				  (global-set-key [(meta x)]
+								  'smex)
 				  (smex)))
 
-(global-set-key [(shift meta x)] 
-				(lambda () 
-				  (interactive) 
-				  (or (boundp 'smex-cache) 
-					  (smex-initialize)) 
-				  (global-set-key [(shift meta x)] 'smex-major-mode-commands) 
+(global-set-key [(shift meta x)]
+				(lambda ()
+				  (interactive)
+				  (or (boundp 'smex-cache)
+					  (smex-initialize))
+				  (global-set-key [(shift meta x)]
+								  'smex-major-mode-commands)
 				  (smex-major-mode-commands)))
 
-(global-set-key (kbd "C-c h i") 'helm-semantic-or-imenu)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-c h i")
+				'helm-semantic-or-imenu)
+(global-set-key (kbd "C-x C-f")
+				'helm-find-files)
 
 (require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist
+			 '("\\.yml\\'" . yaml-mode))
 
 (require 'elisp-format)
 
@@ -121,13 +162,31 @@
 (outline-minor-mode t)
 (outline-minor-mode nil)
 
-(defun find-user-init-file () 
-  "Edit the `user-init-file', in another window." 
-  (interactive) 
+(require 'emmet-mode)
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook 'emmet-mode) ;; enable Emmet's css abbreviation.
+
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist
+			 '("Dockerfile\\'" . dockerfile-mode))
+
+(require 'srefactor)
+(require 'srefactor-lisp)
+
+(custom-set-variables
+ '(go-add-tags-style 'snake-case))
+
+(with-eval-after-load 'go-mode
+    (define-key go-mode-map (kbd "C-c t") #'go-add-tags))
+
+(defun find-user-init-file ()
+  "Edit the `user-init-file', in another window."
+  (interactive)
   (find-file-other-window user-init-file))
 
 ;;(global-set-key [f2] 'find-user-init-file)
-(global-set-key (kbd "C-x c") 'find-user-init-file)
+(global-set-key (kbd "C-x c")
+				'find-user-init-file)
 
 ;; Add yasnippet support for all company backends
 ;; https://github.com/syl20bnr/spacemacs/pull/179
@@ -142,56 +201,72 @@
 ;;
 ;;(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
-(defun check-expansion () 
-  (save-excursion (if (looking-at "\\_>") t (backward-char 1) 
-					  (if (looking-at "\\.") t (backward-char 1) 
-						  (if (looking-at "->") t nil)))))
+(defun check-expansion ()
+  (save-excursion
+	(if (looking-at "\\_>")
+		t
+	  (backward-char 1)
+	  (if (looking-at "\\.")
+		  t
+		(backward-char 1)
+		(if (looking-at "->")
+			t
+		  nil)))))
 
-(defun do-yas-expand () 
-  (let ((yas/fallback-behavior 'return-nil)) 
+(defun do-yas-expand ()
+  (let ((yas/fallback-behavior 'return-nil))
 	(yas/expand)))
 
-(defun tab-indent-or-complete () 
-  (interactive) 
-  (cond ((minibufferp) 
-		 (minibuffer-complete)) 
-		(t (indent-for-tab-command) 
-		   (if (or (not yas/minor-mode) 
-				   (null (do-yas-expand))) 
-			   (if (check-expansion) 
-				   (progn (company-manual-begin) 
-						  (if (null company-candidates) 
-							  (progn (company-abort) 
-									 (indent-for-tab-command)))))))))
+(defun tab-indent-or-complete ()
+  (interactive)
+  (cond
+   ((minibufferp)
+	(minibuffer-complete))
+   (t (indent-for-tab-command)
+	  (if (or (not yas/minor-mode)
+			  (null (do-yas-expand)))
+		  (if (check-expansion)
+			  (progn
+				(company-manual-begin)
+				(if (null company-candidates)
+					(progn
+					  (company-abort)
+					  (indent-for-tab-command)))))))))
 
-(defun tab-complete-or-next-field () 
-  (interactive) 
-  (if (or (not yas/minor-mode) 
-		  (null (do-yas-expand))) 
-	  (if company-candidates (company-complete-selection) 
-		(if (check-expansion) 
-			(progn (company-manual-begin) 
-				   (if (null company-candidates) 
-					   (progn (company-abort) 
-							  (yas-next-field)))) 
+(defun tab-complete-or-next-field ()
+  (interactive)
+  (if (or (not yas/minor-mode)
+		  (null (do-yas-expand)))
+	  (if company-candidates
+		  (company-complete-selection)
+		(if (check-expansion)
+			(progn
+			  (company-manual-begin)
+			  (if (null company-candidates)
+				  (progn
+					(company-abort)
+					(yas-next-field))))
 		  (yas-next-field)))))
 
-(defun expand-snippet-or-complete-selection () 
-  (interactive) 
-  (if (or (not yas/minor-mode) 
-		  (null (do-yas-expand)) 
-		  (company-abort)) 
+(defun expand-snippet-or-complete-selection ()
+  (interactive)
+  (if (or (not yas/minor-mode)
+		  (null (do-yas-expand))
+		  (company-abort))
 	  (company-complete-selection)))
 
-(defun abort-company-or-yas () 
-  (interactive) 
-  (if (null company-candidates) 
-	  (yas-abort-snippet) 
+(defun abort-company-or-yas ()
+  (interactive)
+  (if (null company-candidates)
+	  (yas-abort-snippet)
 	(company-abort)))
 
-(global-set-key [tab] 'tab-indent-or-complete)
-(global-set-key (kbd "TAB") 'tab-indent-or-complete)
-(global-set-key [(control return)] 'company-complete-common)
+(global-set-key [tab]
+				'tab-indent-or-complete)
+(global-set-key (kbd "TAB")
+				'tab-indent-or-complete)
+(global-set-key [(control return)]
+				'company-complete-common)
 
 (define-key company-active-map [tab] 'expand-snippet-or-complete-selection)
 (define-key company-active-map (kbd "TAB") 'expand-snippet-or-complete-selection)
