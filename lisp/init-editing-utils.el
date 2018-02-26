@@ -9,10 +9,8 @@
 
 (setq-default
  make-backup-files nil
- auto-save-default nil)
+ auto-save-default nil
+ tab-width 4)
 
-(menu-bar-mode 0)
-(column-number-mode 1)
-(electric-pair-mode 1)
 
 (provide 'init-editing-utils)
