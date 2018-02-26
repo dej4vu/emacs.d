@@ -3,14 +3,12 @@
 (require-package 'company-go)
 (require-package 'go-add-tags)
 
-(add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-auto-mode 'go-mode
 	       "\\.go\\'")
-(add-hook 'go-mode-hook
-	  (lambda () (add-hook 'before-save-hook 'gofmt-before-save)))
 
 (eval-after-load 'go-mode
   '(progn
+     (add-hook 'go-mode-hook 'go-eldoc-setup)
      ;; gofmt on save
      (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -21,7 +19,7 @@
      (go-eldoc-setup)
 
      ;; flycheck mode
-     (flycheck-mode 1)
+     (add-hook 'go-mode-hook 'flycheck-mode)
 
      ;; go-add-tags mode
      (custom-set-variables '(go-add-tags-sytle 'snake-case))
