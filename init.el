@@ -27,6 +27,8 @@
 (require 'init-protobuf)
 (require 'init-markdown)
 (require 'init-docker)
+(require 'init-web)
+(require 'init-php)
 
 (when (file-exists-p custom-file)
   (load custom-file))
