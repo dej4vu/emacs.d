@@ -32,6 +32,7 @@
 (require 'init-web)
 (require 'init-php)
 (require 'init-lisp)
+(require 'init-js)
 
 (when (file-exists-p custom-file)
   (load custom-file))
