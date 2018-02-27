@@ -1,6 +1,9 @@
 (when (require-package 'rainbow-delimiters)
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+(when (require-package 'smartparens)
+  (add-hook 'prog-mode-hook 'smartparens-mode))
+
 (require-package 'clang-format)
 
 ;; golden-ratio-mode

@@ -23,6 +23,7 @@
 (require 'init-company)
 (require 'init-flycheck)
 (require 'init-helm)
+(require 'init-dict)
 (require 'init-yaml)
 (require 'init-go)
 (require 'init-protobuf)
@@ -30,6 +31,7 @@
 (require 'init-docker)
 (require 'init-web)
 (require 'init-php)
+(require 'init-lisp)
 
 (when (file-exists-p custom-file)
   (load custom-file))

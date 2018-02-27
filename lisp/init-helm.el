@@ -9,6 +9,7 @@
 	helm-ff-file-name-history-use-recentf t)
   (global-set-key (kbd "C-c h i")'helm-semantic-or-imenu)
   (global-set-key (kbd "C-x C-f")'helm-find-files)
+  (global-set-key (kbd "C-x b")'helm-mini)
   )
 
 (provide 'init-helm)
