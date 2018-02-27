@@ -1,6 +1,7 @@
 (when (require-package 'rainbow-delimiters)
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+(show-paren-mode +1)
 (when (require-package 'smartparens)
   (add-hook 'prog-mode-hook 'smartparens-mode))
 
@@ -8,7 +9,7 @@
 
 ;; golden-ratio-mode
 (require-package 'golden-ratio)
-(golden-ratio-mode 1)
+(golden-ratio-mode +1)
 
 (setq-default
  make-backup-files nil
