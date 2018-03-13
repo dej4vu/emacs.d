@@ -40,6 +40,11 @@
 (when (require-package 'evil-surround)
   (global-evil-surround-mode +1))
 
+;; Increment / Decrement binary, octal, decimal and hex literals
+(when (require-package 'evil-numbers)
+  (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
+  (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt))
+
 (setq-default
  make-backup-files nil
  auto-save-default nil
