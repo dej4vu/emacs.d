@@ -8,8 +8,8 @@
 (electric-pair-mode +1)
 
 ;; show the cursor when moving after big movements in the window
-;; (require-package 'beacon)
-;; (beacon-mode +1)
+(require-package 'beacon)
+(beacon-mode +1)
 
 ;; https://emacs-china.org/t/topic/655
 (defun zilongshanren/update-persp-name ()

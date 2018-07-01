@@ -5,7 +5,7 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(setq debug-on-error t)
+;;(setq debug-on-error t)
 (let ((minver "24.3"))
   (when (version< emacs-version minver)
     (error "This config requires Emacs v%s or higher" minver)))
@@ -33,6 +33,8 @@
 (require 'init-php)
 (require 'init-lisp)
 (require 'init-js)
+(require 'init-avy)
+(require 'init-vc)
 
 (when (file-exists-p custom-file)
   (load custom-file))

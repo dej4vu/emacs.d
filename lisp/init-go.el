@@ -1,7 +1,11 @@
 (require-package 'go-mode)
 (require-package 'go-eldoc)
 (require-package 'company-go)
-(require-package 'go-add-tags)
+;; (require-package 'go-add-tags)
+(require-package 'go-guru)
+(require-package 'go-tag)
+(require-package 'go-fill-struct)
+(require-package 'go-impl)
 
 (add-auto-mode 'go-mode
 	       "\\.go\\'")
@@ -26,7 +30,8 @@
      ;; go-mode key bindinigs
      (let ((map go-mode-map))
        (define-key map (kbd "C-c C-o")  'godef-jump-other-window)
-       (define-key map (kbd "C-c t")  'go-add-tags)
+       (define-key map (kbd "C-c t")  'go-tag-add)
+       (define-key map (kbd "C-c T")  'go-tag-remove)
        )
      ))
 
