@@ -26,7 +26,7 @@
      (add-hook 'go-mode-hook 'flycheck-mode)
 
      ;; go-add-tags mode
-     (custom-set-variables '(go-add-tags-sytle 'snake-case))
+     (custom-set-variables '(go-add-tags-sytle 'lower-camel-case))
      ;; go-mode key bindinigs
      (let ((map go-mode-map))
        (define-key map (kbd "C-c C-o")  'godef-jump-other-window)

@@ -34,6 +34,7 @@
 (require 'init-lisp)
 (require 'init-js)
 (require 'init-avy)
+(require 'init-thrift)
 (require 'init-vc)
 
 (when (file-exists-p custom-file)

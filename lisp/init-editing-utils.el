@@ -11,6 +11,8 @@
 
 (require-package 'clang-format)
 
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+
 ;; golden-ratio-mode
 (require-package 'golden-ratio)
 (golden-ratio-mode +1)
