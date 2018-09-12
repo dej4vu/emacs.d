@@ -25,11 +25,14 @@
      ;; flycheck mode
      (add-hook 'go-mode-hook 'flycheck-mode)
 
+	 ;; go-guru
+	 (add-hook 'go-mode-hook 'go-guru-unhighlight-identifiers)
+
      ;; go-add-tags mode
      (custom-set-variables '(go-add-tags-sytle 'lower-camel-case))
      ;; go-mode key bindinigs
      (let ((map go-mode-map))
-       (define-key map (kbd "C-c C-o")  'godef-jump-other-window)
+       (define-key map (kbd "C-c M-j")  'godef-jump-other-window)
        (define-key map (kbd "C-c t")  'go-tag-add)
        (define-key map (kbd "C-c T")  'go-tag-remove)
        )
