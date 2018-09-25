@@ -11,6 +11,24 @@
 (require-package 'beacon)
 (beacon-mode +1)
 
+;; anzu
+(require-package 'anzu)
+(global-anzu-mode +1)
+(anzu-mode +1)
+(with-eval-after-load 'evil
+  (require 'evil-anzu))
+
+(defun my/anzu-update-func (here total)
+  (when anzu--state
+    (let ((status (cl-case anzu--state
+                    (search (format "<%d/%d>" here total))
+                    (replace-query (format "(%d Replaces)" total))
+                    (replace (format "<%d/%d>" here total)))))
+      (propertize status 'face 'anzu-mode-line))))
+
+(custom-set-variables
+ '(anzu-mode-line-update-function #'my/anzu-update-func))
+
 ;; https://emacs-china.org/t/topic/655
 (defun zilongshanren/update-persp-name ()
     (when (bound-and-true-p persp-mode)
@@ -86,6 +104,7 @@
 
 (setq-default mode-line-format
               (list
+			   anzu--mode-line-format
                ;; " %1"
                ;; '(:eval (propertize
                ;;          (window-number-mode-line)
