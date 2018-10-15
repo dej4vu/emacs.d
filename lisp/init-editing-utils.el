@@ -39,6 +39,7 @@
 				select-window-7
 				select-window-8
 				select-window-9)))
+(add-to-list 'window-size-change-functions 'golden-ratio)
 (when (require-package 'evil-surround)
   (global-evil-surround-mode +1))
 
