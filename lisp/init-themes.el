@@ -48,4 +48,7 @@
 (enable-theme 'ample)
 ;; (enable-theme 'ample-flat)
 ;; (enable-theme 'ample-light)
+;;(require-package 'dracula-theme)
+;;(load-theme 'dracula t)
+;;(enable-theme 'dracula)
 (provide 'init-themes)

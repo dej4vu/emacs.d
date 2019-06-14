@@ -1,3 +1,4 @@
+(setq inhibit-compacting-font-caches t)
 ;; show keybindings
 (require-package 'which-key)
 (setq which-key-idle-delay 2.0)

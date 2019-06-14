@@ -1,17 +1,7 @@
 (require 'package)
-(package-initialize)
 
-;;; Install into separate package dirs for each Emacs version, to prevent bytecode incompatibility
-;(let ((versioned-package-dir
-;       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
-;			 user-emacs-directory)))
-;  (setq package-user-dir versioned-package-dir))
-
-(setq package-archives
-      '(
-	("melpa" . "http://mirrors.163.com/elpa/melpa/")
-	("melpa-stable" . "http://mirrors.163.com/elpa/melpa-stable/")
-	))
+(setq package-archives '(("gnu"   . "http://mirrors.163.com/elpa/gnu/")
+                         ("melpa" . "http://mirrors.163.com/elpa/melpa/")))
 
 ;; On-demand installation of packages
 (defun require-package (package &optional min-version no-refresh)

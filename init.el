@@ -36,6 +36,7 @@
 (require 'init-avy)
 (require 'init-thrift)
 (require 'init-vc)
+(require 'init-exec-path)
 
 (when (file-exists-p custom-file)
   (load custom-file))
