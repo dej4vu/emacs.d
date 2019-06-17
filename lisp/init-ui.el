@@ -117,7 +117,7 @@
 
                "%1 "
                ;; the buffer name; the file name as a tool tip
-               '(:eval (propertize "%b " 'face 'font-lock-variable-constant-face
+               '(:eval (propertize "%b " 'face 'font-lock-function-name-face
                                    'help-echo (buffer-file-name)))
 
 
@@ -132,7 +132,7 @@
                ;; was this buffer modified since the last save?
                '(:eval (when (buffer-modified-p)
                          (concat ","  (propertize "Mod"
-                                                  'face 'font-lock-warning-face
+                                                  'face 'font-lock-function-name-face
                                                   'help-echo "Buffer has been modified"))))
 
                ;; is this buffer read-only?
@@ -145,9 +145,9 @@
 
                ;; relative position, size of file
                "["
-               (propertize "%p" 'face 'font-lock-variable-constant-face) ;; % above top
+               (propertize "%p" 'face 'font-lock-function-name-face) ;; % above top
                "/"
-               (propertize "%I" 'face 'font-lock-variable-constant-face) ;; size
+               (propertize "%I" 'face 'font-lock-function-name-face) ;; size
                "] "
 
                ;; the current major mode for the buffer.
@@ -175,8 +175,8 @@
 
                ;; line and column
                "(" ;; '%02' to set to 2 chars at least; prevents flickering
-               (propertize "%02l" 'face 'font-lock-variable-constant-face) ","
-               (propertize "%02c" 'face 'font-lock-variable-constant-face)
+               (propertize "%02l" 'face 'font-lock-function-name-face) ","
+               (propertize "%02c" 'face 'font-lock-function-name-face)
                ") "
 
                '(:eval (buffer-encoding-abbrev))

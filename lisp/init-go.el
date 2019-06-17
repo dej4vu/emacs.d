@@ -14,7 +14,7 @@
   '(progn
      (add-hook 'go-mode-hook 'go-eldoc-setup)
      ;; gofmt on save
-     (add-hook 'before-save-hook 'gofmt-before-save)
+     ;;(add-hook 'before-save-hook 'gofmt-before-save)
 
      ;; company mode settings
      (add-to-list 'company-backends 'company-go)
@@ -23,7 +23,10 @@
      (go-eldoc-setup)
 
      ;; flycheck mode
-     (add-hook 'go-mode-hook 'flycheck-mode)
+     ;;(add-hook 'go-mode-hook 'flycheck-mode)
+	 (add-hook 'go-mode-hook (lambda ()
+                                  (flycheck-mode 1);;))
+                                  (setq flycheck-checker 'go-golint)))
 
 	 ;; go-guru
 	 (add-hook 'go-mode-hook 'go-guru-unhighlight-identifiers)
