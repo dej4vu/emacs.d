@@ -14,7 +14,7 @@
   '(progn
      (add-hook 'go-mode-hook 'go-eldoc-setup)
      ;; gofmt on save
-     ;;(add-hook 'before-save-hook 'gofmt-before-save)
+     (add-hook 'before-save-hook 'gofmt-before-save)
 
      ;; company mode settings
      (add-to-list 'company-backends 'company-go)
