@@ -19,6 +19,8 @@
 (anzu-mode +1)
 (with-eval-after-load 'evil
   (require 'evil-anzu))
+(require-package 'minions)
+(minions-mode +1)
 
 (defun my/anzu-update-func (here total)
   (when anzu--state
@@ -161,7 +163,8 @@
                '(:eval evil-mode-line-tag)
 
                ;; minor modes
-               minor-mode-alist
+               ;;minor-mode-alist
+			   minions-mode-line-modes
                " "
                ;; git info
                `(vc-mode vc-mode)
