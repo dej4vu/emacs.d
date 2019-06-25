@@ -6,6 +6,7 @@
 (require-package 'go-tag)
 (require-package 'go-fill-struct)
 (require-package 'go-impl)
+(require-package 'go-rename)
 
 (add-auto-mode 'go-mode
 	       "\\.go\\'")
