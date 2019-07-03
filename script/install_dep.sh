@@ -1,4 +1,6 @@
 #!/bin/sh
+mkdir tmp
+export GOPATH=$(PWD)/tmp
 for dep in "
 	github.com/nsf/gocode
 	github.com/josharian/impl
