@@ -19,6 +19,11 @@
 	   company-tooltip-limit 10
 	   company-minimum-prefix-length 2
 	   company-show-numbers t)
+	  (define-key company-active-map (kbd "M-n") nil)
+      (define-key company-active-map (kbd "M-p") nil)
+	  (define-key company-active-map (kbd "C-n") #'company-select-next)
+      (define-key company-active-map (kbd "C-p") #'company-select-previous)
+	  (define-key evil-insert-state-map [escape] 'evil-normal-state)
      ))
 
 (provide 'init-company)

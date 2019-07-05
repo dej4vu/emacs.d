@@ -6,5 +6,6 @@
 (require-package 'evil)
 ;; enable evil-mode
 (evil-mode 1)
+(setcdr evil-insert-state-map nil)
 
 (provide 'init-evil)
