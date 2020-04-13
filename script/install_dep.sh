@@ -2,7 +2,7 @@
 mkdir tmp
 export GOPATH=$(PWD)/tmp
 for dep in "
-	github.com/nsf/gocode
+	github.com/stamblerre/gocode
 	github.com/josharian/impl
 	golang.org/x/tools/cmd/godoc
 	github.com/davidrjenni/reftools/cmd/fillstruct
