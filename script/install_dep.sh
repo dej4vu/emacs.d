@@ -1,6 +1,8 @@
 #!/bin/sh
 mkdir tmp
-export GOPATH=$(PWD)/tmp
+export GOPATH=$(pwd)/tmp
+export GOPROXY=https://goproxy.io
+export GO111MODULE=on
 for dep in "
 	github.com/stamblerre/gocode
 	github.com/josharian/impl
