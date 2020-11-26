@@ -14,7 +14,9 @@ for dep in "
 	golang.org/x/lint/golint
 	golang.org/x/tools/cmd/gorename
 	github.com/sqs/goreturns
+	golang.org/x/tools/gopls@latest
 "
 do
 	go get -v -u $dep
 done
+go clean -modcache
