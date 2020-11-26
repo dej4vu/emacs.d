@@ -1,7 +1,7 @@
 (require 'package)
 
 (setq package-archives '(("gnu"   . "http://mirrors.163.com/elpa/gnu/")
-                         ("melpa" . "http://mirrors.163.com/elpa/melpa/")))
+                         ("melpa" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 
 ;; On-demand installation of packages
 (defun require-package (package &optional min-version no-refresh)
@@ -14,7 +14,7 @@
 	(package-refresh-contents)
 	(require-package package min-version t)))))
 
-(require 'cl)
+;;(require 'cl)
 ;; Fire up package.el
 
 (setq package-enable-at-startup nil)

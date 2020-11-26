@@ -31,6 +31,7 @@
      ;;(add-hook 'go-mode-hook 'flycheck-mode)
 	 ;;(push 'company-lsp company-backends)
 	 (setq lsp-enable-file-watchers nil)
+	 (setq lsp-keymap-prefix "C-c l")
 	 (add-hook 'go-mode-hook (lambda ()
                                   (flycheck-mode 1);;))
                                   (lsp-ui-mode 1)
