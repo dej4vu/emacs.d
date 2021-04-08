@@ -7,8 +7,8 @@
 ;;(require-package 'go-fill-struct)
 ;;(require-package 'go-impl)
 ;;(require-package 'go-rename)
-(require-package 'lsp-mode)
-(require-package 'lsp-ui)
+;;(require-package 'lsp-mode)
+;;(require-package 'lsp-ui)
 ;;(require-package 'company-lsp)
 
 ;;(add-auto-mode 'go-mode "\\.go\\'")
@@ -19,7 +19,7 @@
      ;; gofmt on save
      (add-hook 'before-save-hook 'gofmt-before-save)
 
-	 (add-hook 'go-mode-hook 'lsp-deferred)
+	 ;;(add-hook 'go-mode-hook 'lsp-deferred)
 
      ;; company mode settings
      ;;(add-to-list 'company-backends 'company-go)
@@ -30,11 +30,11 @@
      ;; flycheck mode
      ;;(add-hook 'go-mode-hook 'flycheck-mode)
 	 ;;(push 'company-lsp company-backends)
-	 (setq lsp-enable-file-watchers nil)
-	 (setq lsp-keymap-prefix "C-c l")
+	 ;;(setq lsp-enable-file-watchers nil)
+	 ;;(setq lsp-keymap-prefix "C-c l")
 	 (add-hook 'go-mode-hook (lambda ()
                                   (flycheck-mode 1);;))
-                                  (lsp-ui-mode 1)
+                                  ;;(lsp-ui-mode 1)
                                   ;;(setq flycheck-checker 'go-golint)
 								  ))
 

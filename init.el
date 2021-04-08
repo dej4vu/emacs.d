@@ -19,6 +19,7 @@
 (require 'init-editing-utils)
 (require 'init-evil)
 (require 'init-themes)
+(require 'init-lsp)
 (require 'init-ui)
 (require 'init-company)
 (require 'init-flycheck)
