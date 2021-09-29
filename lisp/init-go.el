@@ -45,7 +45,8 @@
      ;;(custom-set-variables '(go-add-tags-sytle 'lower-camel-case))
      ;; go-mode key bindinigs
      (let ((map go-mode-map))
-       (define-key map (kbd "C-c M-j")  'godef-jump-other-window)
+       (define-key map (kbd "C-c C-j")  'xref-find-definitions)
+       (define-key map (kbd "C-c M-j")  'xref-find-definitions-other-window)
        ;;(define-key map (kbd "C-c t")  'go-tag-add)
        ;;(define-key map (kbd "C-c T")  'go-tag-remove)
        )
