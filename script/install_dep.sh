@@ -4,7 +4,7 @@ export GOPATH=$(pwd)/tmp
 export GOPROXY=https://goproxy.io
 export GO111MODULE=on
 for dep in "
-	github.com/nsf/gocode
+	github.com/stamblerre/gocode
 	github.com/josharian/impl
 	golang.org/x/tools/cmd/godoc
 	github.com/davidrjenni/reftools/cmd/fillstruct
