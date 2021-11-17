@@ -14,9 +14,15 @@
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 
 ;; golden-ratio-mode
-(require-package 'golden-ratio)
-(golden-ratio-mode +1)
-(setq golden-ratio-extra-commands
+;;(require-package 'golden-ratio)
+;;(golden-ratio-mode +1)
+
+(use-package golden-ratio
+  :ensure t
+  :init
+  (golden-ratio-mode +1)
+  :config
+  (setq golden-ratio-extra-commands
 	  (append golden-ratio-extra-commands
 			  '(evil-window-left
 				evil-window-right
@@ -39,7 +45,8 @@
 				select-window-7
 				select-window-8
 				select-window-9)))
-(add-to-list 'window-size-change-functions 'golden-ratio)
+  (add-to-list 'window-size-change-functions 'golden-ratio)
+)
 (when (require-package 'evil-surround)
   (global-evil-surround-mode +1))
 

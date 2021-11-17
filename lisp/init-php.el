@@ -1,4 +1,3 @@
-(when (require-package 'php-mode)
-  t)
-
+;; php mode
+(use-package php-mode)
 (provide 'init-php)

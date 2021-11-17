@@ -1,4 +1,5 @@
-(when (require-package 'dockerfile-mode)
-  (add-auto-mode 'dockerfile-mode "Dockerfile\\'"))
+;; dockerfile mode
+(use-package dockerfile-mode
+  :mode (("Dockerfile\\'" . dockerfile-mode)))
 
 (provide 'init-docker)

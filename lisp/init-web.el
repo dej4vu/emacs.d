@@ -1,11 +1,12 @@
-(when (require-package 'web-mode)
-  (add-auto-mode 'web-mode "\\.phtml\\'")
-  (add-auto-mode 'web-mode "\\.tpl\\.php\\'")
-  (add-auto-mode 'web-mode "\\.tpl\\'")
-  (add-auto-mode 'web-mode "\\.blade\\.php\\'")
-  (add-auto-mode 'web-mode "\\.jsp\\'")
-  (add-auto-mode 'web-mode "\\.as[cp]x\\'")
-  (add-auto-mode 'web-mode "\\.erb\\'")
-  (add-auto-mode 'web-mode "\\.html?\\'"))
+;; web mode
+(use-package web-mode
+  :mode(("\\.phtml\\'" . web-mode)
+		("\\.tpl\\.php\\'" . web-mode)
+		("\\.tpl\\'" . web-mode)
+		("\\.blade\\.php\\'" . web-mode)
+		("\\.jsp\\'" . web-mode)
+		("\\.as[cp]x\\'" . web-mode)
+		("\\.erb\\'" . web-mode)
+		("\\.html?\\'" . web-mode)))
 
 (provide 'init-web)

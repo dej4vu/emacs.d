@@ -12,7 +12,19 @@
 (setq emacs-load-start-time (current-time))
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+;;(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+;; Constants
+(require 'init-variables)
+
+;; Customization
+(require 'init-custom)
+
+;; Functions
+(require 'init-funcs)
+
+;; Packages
+(require 'init-package)
 
 (require 'init-elpa)
 (require 'init-utils)

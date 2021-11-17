@@ -1,6 +1,4 @@
-(when (require-package 'js2-mode)
-  (require-package 'json-mode)
-  (add-auto-mode 'js2-mode "\\.js\\'")
-  (add-auto-mode 'web-mode "\\.pac\\'"))
-
+(use-package js2-mode
+  :mode(("\\.js\\'" . js2-mode)
+		("\\.pac\\'" . web-mode)))
 (provide 'init-js)

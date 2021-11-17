@@ -1,4 +1,6 @@
-(when (require-package 'bing-dict)
-  (global-set-key (kbd "C-c d") 'bing-dict-brief))
+;; bing dictionary for emacs
+(use-package bing-dict
+  :bind
+  (("C-c d" . 'bing-dict-brief)))
 
 (provide 'init-dict)
