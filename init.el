@@ -39,6 +39,7 @@
 (require 'init-dict)
 (require 'init-yaml)
 (require 'init-go)
+(require 'init-python)
 (require 'init-protobuf)
 (require 'init-markdown)
 (require 'init-docker)

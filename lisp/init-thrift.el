@@ -1,4 +1,5 @@
-(require-package 'thrift)
-(add-auto-mode 'thrift-mode "\\.thrift\\'")
+;; thrift mode
+(use-package thrift
+  :mode (("\\.thrift\\'" . thrift-mode)))
 
 (provide 'init-thrift)

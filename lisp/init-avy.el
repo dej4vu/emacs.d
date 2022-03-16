@@ -1,2 +1,2 @@
-(require-package 'avy)
+(use-package avy)
 (provide 'init-avy)
