@@ -1,8 +1,20 @@
-(require-package 'lsp-mode)
-(require-package 'lsp-ui)
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (go-mode . lsp-defered)
+         (python-mode . lsp-deferred)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :bind (:map lsp-mode-map
+              ("C-c C-j" . 'xref-find-definitions)
+              ("C-c M-j" . 'xref-find-definitions-other-window))
+  :bind (:map lsp-mode-map
+              ("C-c C-t" . lsp-describe-thing-at-point))
+  :commands lsp)
 
-(add-hook 'go-mode-hook #'lsp-deferred)
-(setq lsp-enable-file-watchers nil)
-(setq lsp-keymap-prefix "C-c l")
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
 
 (provide 'init-lsp)

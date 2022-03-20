@@ -1,55 +1,28 @@
-(require-package 'go-mode)
-;;(require-package 'go-eldoc)
-;;(require-package 'company-go)
-;;(require-package 'go-add-tags)
-;;(require-package 'go-guru)
-;;(require-package 'go-tag)
-;;(require-package 'go-fill-struct)
-;;(require-package 'go-impl)
-;;(require-package 'go-rename)
-;;(require-package 'lsp-mode)
-;;(require-package 'lsp-ui)
-;;(require-package 'company-lsp)
+;;https://github.com/CSRaghunandan/.emacs.d/blob/master/setup-files/setup-go.el
+(use-package go-mode
+  :hook ((go-mode . (lambda ()
+                      (lsp-deferred)
+                      (lsp-ui-doc-mode)
+                      (wh/set-go-tab-width)
+                      (my-go-mode-hook)
+                      (company-mode))))
+  :config
 
-;;(add-auto-mode 'go-mode "\\.go\\'")
+  (defun my-go-mode-hook()
+      (set (make-local-variable 'company-backends)
+           '((company-capf company-files :with company-yasnippet)
+             (company-dabbrev-code company-dabbrev))))
 
-(eval-after-load 'go-mode
-  '(progn
-     ;;(add-hook 'go-mode-hook 'go-eldoc-setup)
-     ;; gofmt on save
-     (add-hook 'before-save-hook 'gofmt-before-save)
+  ;; Go is indented with tabs, so set the tab size in those buffers.
+  (defun wh/set-go-tab-width ()
+    (setq-local indent-tabs-mode t)
+    (setq tab-width 4))
 
-	 ;;(add-hook 'go-mode-hook 'lsp-deferred)
-
-     ;; company mode settings
-     ;;(add-to-list 'company-backends 'company-go)
-
-     ;; el-doc for go
-     ;;(go-eldoc-setup)
-
-     ;; flycheck mode
-     ;;(add-hook 'go-mode-hook 'flycheck-mode)
-	 ;;(push 'company-lsp company-backends)
-	 ;;(setq lsp-enable-file-watchers nil)
-	 ;;(setq lsp-keymap-prefix "C-c l")
-	 (add-hook 'go-mode-hook (lambda ()
-                                  (flycheck-mode 1);;))
-                                  ;;(lsp-ui-mode 1)
-                                  ;;(setq flycheck-checker 'go-golint)
-								  ))
-
-	 ;; go-guru
-	 ;;(add-hook 'go-mode-hook 'go-guru-unhighlight-identifiers)
-
-     ;; go-add-tags mode
-     ;;(custom-set-variables '(go-add-tags-sytle 'lower-camel-case))
-     ;; go-mode key bindinigs
-     (let ((map go-mode-map))
-       (define-key map (kbd "C-c C-j")  'xref-find-definitions)
-       (define-key map (kbd "C-c M-j")  'xref-find-definitions-other-window)
-       ;;(define-key map (kbd "C-c t")  'go-tag-add)
-       ;;(define-key map (kbd "C-c T")  'go-tag-remove)
-       )
-     ))
+  ;; Set up before-save hooks to format buffer and add/delete imports.
+;; Make sure you don't have other gofmt/goimports hooks enabled.
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
 
 (provide 'init-go)

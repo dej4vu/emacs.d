@@ -1,8 +1,12 @@
-(when (require-package 'magit)
-  (when (require-package 'diff-hl)
-	(add-hook 'prog-mode-hook 'diff-hl-mode)
-	(add-hook 'prog-mode-hook 'diff-hl-margin-mode)
-	(add-hook 'prog-mode-hook 'diff-hl-flydiff-mode)
-	(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
-  (global-set-key (kbd "C-x g") 'magit-status))
+(use-package magit)
+
+(use-package diff-hl
+  :hook (
+	     (prog-mode . diff-hl-mode)
+	     (prog-mode . diff-hl-margin-mode)
+	     (prog-mode . diff-hl-flydiff-mode)
+	     (magit-post-refresh . diff-hl-magit-post-refresh))
+  :init
+  (global-diff-hl-mode))
+
 (provide 'init-vc)
