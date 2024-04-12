@@ -6,7 +6,7 @@
 
 (menu-bar-mode -1)
 (column-number-mode +1)
-(electric-pair-mode +1)
+;;(electric-pair-mode +1)
 
 ;; show the cursor when moving after big movements in the window
 (require-package 'beacon)

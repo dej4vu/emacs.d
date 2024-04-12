@@ -1,6 +1,6 @@
 #!/bin/sh
-#mkdir tmp
-#export GOPATH=$(pwd)/tmp
+mkdir tmp
+export GOPATH=$(pwd)/tmp
 export GOPROXY=https://goproxy.cn,https://goproxy.io,direct
 export GO111MODULE=on
 #go clean -modcache

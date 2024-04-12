@@ -2,6 +2,11 @@
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  (setq gc-cons-threshold 100000000)
+  (setq lsp-log-io t)
+  (custom-set-faces
+    '(header-line ((t (:inherit mode-line :background "dim gray")))))
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (go-mode . lsp-defered)
          (python-mode . lsp-deferred)

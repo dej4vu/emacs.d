@@ -37,7 +37,7 @@
                                    :value-type (string :tag "URL or directory name")))
   :group 'dej4vu)
 
-(defcustom dej4vu-package-archives 'tencent
+(defcustom dej4vu-package-archives 'tuna
   "Set package archives from which to fetch."
   :set (lambda (symbol value)
          (set symbol value)

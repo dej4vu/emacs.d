@@ -5,8 +5,14 @@
   (outline-minor-mode -1))
 
 (show-paren-mode +1)
-(when (require-package 'smartparens)
-  (add-hook 'prog-mode-hook 'smartparens-mode)
+;;(when (require-package 'smartparens)
+;;  (add-hook 'prog-mode-hook 'smartparens-mode)
+;;  (require 'smartparens-config))
+(use-package smartparens-mode
+  :ensure smartparens  ;; install the package
+  :hook (prog-mode text-mode markdown-mode) ;; add `smartparens-mode` to these hooks
+  :config
+  ;; load default config
   (require 'smartparens-config))
 
 (require-package 'clang-format)
