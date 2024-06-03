@@ -9,8 +9,10 @@
 ;;(setcdr evil-insert-state-map nil)
 (use-package undo-tree
   :ensure t
-  ;;:init
-  ;;(global-undo-tree-mode)
+  :init
+  (global-undo-tree-mode)
+  :config
+  (setq-default undo-tree-auto-save-history nil)
   )
 (use-package evil
   :ensure t
@@ -20,9 +22,7 @@
   (setcdr evil-insert-state-map nil)
   (setq evil-symbol-word-search t)
   (setq evil-want-C-u-scroll t)
-  (global-undo-tree-mode)
-  (setq evil-undo-system 'undo-tree)
-  ;;(evil-set-undo-system 'undo-tree)
+  (evil-set-undo-system 'undo-tree)
   )
 
 (provide 'init-evil)

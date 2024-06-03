@@ -5,6 +5,7 @@
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   (setq gc-cons-threshold 100000000)
   (setq lsp-log-io t)
+  (setq lsp-file-watch-threshold 5000)
   (custom-set-faces
     '(header-line ((t (:inherit mode-line :background "dim gray")))))
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
