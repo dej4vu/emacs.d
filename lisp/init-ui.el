@@ -1,8 +1,11 @@
 (setq inhibit-compacting-font-caches t)
 ;; show keybindings
-(require-package 'which-key)
-(setq which-key-idle-delay 2.0)
-(which-key-mode +1)
+(use-package which-key
+  :ensure t
+  :init
+  (setq which-key-idle-delay 2.0)
+  :config
+  (which-key-mode +1))
 
 ;;(menu-bar-mode -1)
 (if window-system
@@ -13,18 +16,34 @@
 ;;(electric-pair-mode +1)
 
 ;; show the cursor when moving after big movements in the window
-(require-package 'beacon)
-(beacon-mode +1)
+(use-package beacon
+  :ensure t
+  :init
+  (beacon-mode +1))
 
 ;; anzu
-(require-package 'anzu)
-(require-package 'evil-anzu)
-(global-anzu-mode +1)
-(anzu-mode +1)
-(with-eval-after-load 'evil
-  (require 'evil-anzu))
-(require-package 'minions)
-(minions-mode +1)
+(use-package anzu
+  :ensure t
+  :hook (after-init . global-anzu-mode)
+  ;;:diminish
+  :init
+  (setq anzu-mode-lighter "")
+  (global-anzu-mode +1)
+  (anzu-mode +1)
+  )
+
+(use-package evil-anzu
+  :ensure t
+  :after (evil anzu)
+  :demand t
+  :init
+  (global-anzu-mode t))
+
+(use-package minions
+  :ensure t
+  :init
+  (minions-mode +1)
+  )
 
 (defun my/anzu-update-func (here total)
   (when anzu--state

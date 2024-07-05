@@ -51,6 +51,7 @@
 (require 'init-thrift)
 (require 'init-vc)
 (require 'init-exec-path)
+(require 'init-yas)
 
 (when (file-exists-p custom-file)
   (load custom-file))

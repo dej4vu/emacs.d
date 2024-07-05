@@ -8,6 +8,16 @@
   (setq lsp-file-watch-threshold 5000)
   (custom-set-faces
     '(header-line ((t (:inherit mode-line :background "dim gray")))))
+  :config
+  ;; 配置gopls的特定设置
+  ;;(setq lsp-go-build-flags '["-build-tags=wireinject"])
+  ;;(setq lsp-go-gopls-args '["-build-tags=wireinject"])
+  ;;(lsp-register-custom-settings
+  ;; '(("gopls.completeFunctionCalls" t t)
+  ;;	 ("gopls.usePlaceholders" t t)
+  ;;	 ))
+  ;;:custom
+  ;;(setq lsp-enable-snippet t)
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (go-mode . lsp-defered)
          (python-mode . lsp-deferred)

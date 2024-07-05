@@ -1,13 +1,14 @@
-(when (require-package 'rainbow-delimiters)
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-  ;; rainbow-delimiters-mode not work if outline-minor-mode not set
+;; rainbow-delimiters
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode)
+  :init
   (outline-minor-mode +1)
   (outline-minor-mode -1))
 
 (show-paren-mode +1)
-;;(when (require-package 'smartparens)
-;;  (add-hook 'prog-mode-hook 'smartparens-mode)
-;;  (require 'smartparens-config))
+
+;; smartparens
 (use-package smartparens-mode
   :ensure smartparens  ;; install the package
   :hook (prog-mode text-mode markdown-mode) ;; add `smartparens-mode` to these hooks
@@ -15,14 +16,14 @@
   ;; load default config
   (require 'smartparens-config))
 
-(require-package 'clang-format)
+;; clang-format
+(use-package clang-format
+  :ensure t
+ )
 
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 
 ;; golden-ratio-mode
-;;(require-package 'golden-ratio)
-;;(golden-ratio-mode +1)
-
 (use-package golden-ratio
   :ensure t
   :init
@@ -53,15 +54,24 @@
 				select-window-9)))
   (add-to-list 'window-size-change-functions 'golden-ratio)
 )
-(when (require-package 'evil-surround)
+
+;; evil-surround
+(use-package evil-surround
+  :ensure t
+  :init
   (global-evil-surround-mode +1))
 
+;; evil-numbers
 ;; Increment / Decrement binary, octal, decimal and hex literals
-(when (require-package 'evil-numbers)
-  (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
-  (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt))
+(use-package evil-numbers
+  :ensure t
+  :bind(
+  ("C-c +" . evil-numbers/inc-at-pt)
+  ("C-c -" . evil-numbers/dec-at-pt)))
 
 (setq-default
+ ; no share system clipboard
+ x-select-enable-clipboard nil
  make-backup-files nil
  auto-save-default nil
  tab-width 4)
@@ -69,10 +79,13 @@
 (global-set-key (kbd "C-c C-c") 'comment-line)
 
 ;; multiple-cursors
-(require-package 'multiple-cursors)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(use-package multiple-cursors
+  :ensure t
+  :bind(
+    ("C->" . mc/mark-next-like-this)
+	("C-<" . mc/mark-previous-like-this)
+	("C-c C-<" . mc/mark-all-like-this))
+  )
 
 
 (provide 'init-editing-utils)

@@ -7,7 +7,7 @@
         ("C-h" . nil)
         ("C-n" . company-select-next)
         ("C-p" . company-select-previous)
-        ("<tab>" . company-complete-common)
+        ;;("<tab>" . company-complete-common)
 		;; 选中当前候选项
         ("C-f" . 'company-complete-selection)
         ;("C-f" . company-complete-common)
@@ -43,6 +43,7 @@
 
   (add-hook 'company-completion-started-hook 'sanityinc/page-break-lines-disable)
   (add-hook 'company-after-completion-hook 'sanityinc/page-break-lines-maybe-reenable))
+  (add-hook 'after-init-hook 'company-tng-mode)
 
 ;; company-prescient: Simple but effective sorting and filtering for Emacs.
 ;; https://github.com/raxod502/prescient.el/tree/master
