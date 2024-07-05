@@ -42,8 +42,11 @@
       (page-break-lines-mode 1)))
 
   (add-hook 'company-completion-started-hook 'sanityinc/page-break-lines-disable)
-  (add-hook 'company-after-completion-hook 'sanityinc/page-break-lines-maybe-reenable))
-  (add-hook 'after-init-hook 'company-tng-mode)
+  (add-hook 'company-after-completion-hook 'sanityinc/page-break-lines-maybe-reenable)
+  ;;(add-hook 'after-init-hook 'company-tng-mode)
+  :hook
+  (prog-mode . company-mode)
+  (text-mode . company-mode))
 
 ;; company-prescient: Simple but effective sorting and filtering for Emacs.
 ;; https://github.com/raxod502/prescient.el/tree/master

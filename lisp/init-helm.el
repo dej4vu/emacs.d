@@ -18,8 +18,9 @@
 ;; helm-smex
 (use-package helm-smex
   :ensure t
-  :init
-  (global-set-key [remap execute-extended-command] #'helm-smex)
+  ;;:init
+  ;;(global-set-key [remap execute-extended-command] #'helm-smex)
+  :bind ([remap execute-extended-command] . helm-smex)
   :bind (("M-X" . helm-smex-major-mode-commands)))
 
 (provide 'init-helm)
