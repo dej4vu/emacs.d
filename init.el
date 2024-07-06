@@ -26,7 +26,7 @@
 ;; Packages
 (require 'init-package)
 
-(require 'init-elpa)
+;;(require 'init-elpa)
 (require 'init-utils)
 (require 'init-editing-utils)
 (require 'init-evil)
