@@ -10,12 +10,13 @@
 ;;(menu-bar-mode -1)
 (if window-system
     (menu-bar-mode +1)
+  ;; disable scroll bar
+  (scroll-bar-mode -1)
+  ;; disable menu bar
   (menu-bar-mode -1))
 
 (column-number-mode +1)
 
-;; disable scroll bar
-(scroll-bar-mode -1)
 
 ;;(electric-pair-mode +1)
 
