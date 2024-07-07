@@ -4,15 +4,23 @@
   :ensure t
   :init
   (setq which-key-idle-delay 2.0)
-  :config
+  ;;:config
   (which-key-mode +1))
 
 ;;(menu-bar-mode -1)
 (if window-system
     (menu-bar-mode +1)
+  ;; disable menu bar
   (menu-bar-mode -1))
 
+(when (display-graphic-p)
+  ;; disable scroll bar
+  (scroll-bar-mode -1)
+  )
+
 (column-number-mode +1)
+
+
 ;;(electric-pair-mode +1)
 
 ;; show the cursor when moving after big movements in the window
