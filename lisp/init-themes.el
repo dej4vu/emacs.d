@@ -7,5 +7,6 @@
   (load-theme 'ample-light t t)
   ;; choose one to enable
   (enable-theme 'ample)
+  :defer t
   )
 (provide 'init-themes)

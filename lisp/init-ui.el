@@ -2,6 +2,7 @@
 ;; show keybindings
 (use-package which-key
   :ensure t
+  :defer t
   :init
   (setq which-key-idle-delay 2.0)
   ;;:config

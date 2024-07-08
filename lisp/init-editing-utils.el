@@ -19,6 +19,7 @@
 ;; clang-format
 (use-package clang-format
   :ensure t
+  :defer t
  )
 
 (add-hook 'prog-mode-hook 'hs-minor-mode)
@@ -28,6 +29,7 @@
   :ensure t
   :init
   (golden-ratio-mode +1)
+  :defer t
   :config
   (setq golden-ratio-extra-commands
 	  (append golden-ratio-extra-commands
@@ -77,6 +79,9 @@
  tab-width 4)
 ;; global toggle commentary
 (global-set-key (kbd "C-c C-c") 'comment-line)
+
+;; insert newline below and jumpt to it
+(global-set-key (kbd "<C-return>") (kbd "C-e C-m"))
 
 ;; multiple-cursors
 (use-package multiple-cursors
