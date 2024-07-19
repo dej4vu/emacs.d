@@ -6,7 +6,7 @@
 (package-initialize)
 
 ;;(setq debug-on-error t)
-(let ((minver "24.3"))
+(let ((minver "29.3"))
   (when (version< emacs-version minver)
     (error "This config requires Emacs v%s or higher" minver)))
 (setq emacs-load-start-time (current-time))
@@ -52,6 +52,7 @@
 (require 'init-vc)
 (require 'init-exec-path)
 (require 'init-yas)
+(require 'init-llm)
 
 (when (file-exists-p custom-file)
   (load custom-file))
