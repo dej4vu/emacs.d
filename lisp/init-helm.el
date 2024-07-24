@@ -14,7 +14,8 @@
 	("C-x C-f" . helm-find-files)
 	("C-x C-r" . helm-recentf)
 	("C-x b" . helm-mini)
-	("M-x" . helm-M-x))
+	;;("M-x" . helm-M-x)
+	)
   )
 
 ;; helm-smex
@@ -59,6 +60,14 @@
   ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
   ;; (setq vertico-cycle t)
   )
+
+;; 补全
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless flex))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
   :init
