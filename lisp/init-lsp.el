@@ -18,6 +18,9 @@
   ;;	 ))
   ;;:custom
   ;;(setq lsp-enable-snippet t)
+  ;;排除'/opt/homebrew'目录下所有文件
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]opt/homebrew")
+
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (go-mode . lsp-defered)
          (python-mode . lsp-deferred)
