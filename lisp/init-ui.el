@@ -12,7 +12,21 @@
 (if window-system
     (menu-bar-mode +1)
   ;; disable menu bar
-  (menu-bar-mode -1))
+  (menu-bar-mode -1)
+  )
+
+(defun prettify-continuation-indocator (&optional dummy)
+  (ignore dummy)
+  (when buffer-display-table
+    (set-display-table-slot buffer-display-table 'wrap ?↩)))
+
+(unless window-system
+  (set-display-table-slot standard-display-table 'wrap ?↩)
+  (add-hook 'window-configuration-change-hook 'prettify-continuation-indocator)
+  ;; 如果还有问题，试着启用以下设置
+  ;; (with-eval-after-load 'page-break-lines
+  ;;   (add-hook 'page-break-lines-mode-hook 'prettify-continuation-indocator))
+  )
 
 (when (display-graphic-p)
   ;; disable scroll bar
@@ -182,89 +196,104 @@
           (`interrupted " -")
           (`suspicious '(propertize " ?" 'face 'warning))))))
 
-(setq-default mode-line-format
-              (list
-			   anzu--mode-line-format
-               ;; " %1"
-               ;; '(:eval (propertize
-               ;;          (window-number-mode-line)
-               ;;          'face
-               ;;          'font-lock-type-face))
-               ;; " "
-               ;; '(:eval (zilongshanren/update-persp-name))
+;;(setq-default mode-line-format
+;;              (list
+;;			   anzu--mode-line-format
+;;               ;; " %1"
+;;               ;; '(:eval (propertize
+;;               ;;          (window-number-mode-line)
+;;               ;;          'face
+;;               ;;          'font-lock-type-face))
+;;               ;; " "
+;;               ;; '(:eval (zilongshanren/update-persp-name))
+;;
+;;               "%1 "
+;;               ;; the buffer name; the file name as a tool tip
+;;               '(:eval (propertize "%b " 'face 'font-lock-function-name-face
+;;                                   'help-echo (buffer-file-name)))
+;;
+;;
+;;               " [" ;; insert vs overwrite mode, input-method in a tooltip
+;;               '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
+;;                                   'face 'font-lock-preprocessor-face
+;;                                   'help-echo (concat "Buffer is in "
+;;                                                      (if overwrite-mode
+;;                                                          "overwrite"
+;;                                                        "insert") " mode")))
+;;
+;;               ;; was this buffer modified since the last save?
+;;               '(:eval (when (buffer-modified-p)
+;;                         (concat ","  (propertize "Mod"
+;;                                                  'face 'font-lock-function-name-face
+;;                                                  'help-echo "Buffer has been modified"))))
+;;
+;;               ;; is this buffer read-only?
+;;               '(:eval (when buffer-read-only
+;;                         (concat ","  (propertize "RO"
+;;                                                  'face 'font-lock-type-face
+;;                                                  'help-echo "Buffer is read-only"))))
+;;               "] "
+;;
+;;
+;;               ;; relative position, size of file
+;;               "["
+;;               (propertize "%p" 'face 'font-lock-function-name-face) ;; % above top
+;;               "/"
+;;               (propertize "%I" 'face 'font-lock-function-name-face) ;; size
+;;               "] "
+;;
+;;               ;; the current major mode for the buffer.
+;;               '(:eval (propertize "%m" 'face 'font-lock-string-face
+;;                                   'help-echo buffer-file-coding-system))
+;;
+;;               "%1 "
+;;               my-flycheck-mode-line
+;;               "%1 "
+;;               ;; evil state
+;;               '(:eval evil-mode-line-tag)
+;;
+;;               ;; minor modes
+;;               ;;minor-mode-alist
+;;			   minions-mode-line-modes
+;;               " "
+;;               ;; git info
+;;               `(vc-mode vc-mode)
+;;
+;;               " "
+;;
+;;               ;; global-mode-string goes in mode-line-misc-info
+;;               mode-line-misc-info
+;;
+;;               (mode-line-fill 'mode-line 20)
+;;
+;;               ;; line and column
+;;               "(" ;; '%02' to set to 2 chars at least; prevents flickering
+;;               (propertize "%02l" 'face 'font-lock-function-name-face) ","
+;;               (propertize "%02c" 'face 'font-lock-function-name-face)
+;;               ") "
+;;
+;;               '(:eval (buffer-encoding-abbrev))
+;;               mode-line-end-spaces
+;;               ;; add the time, with the date and the emacs uptime in the tooltip
+;;               ;; '(:eval (propertize (format-time-string "%H:%M")
+;;               ;;                     'help-echo
+;;               ;;                     (concat (format-time-string "%c; ")
+;;               ;;                             (emacs-uptime "Uptime:%hh"))))
+;;               ))
 
-               "%1 "
-               ;; the buffer name; the file name as a tool tip
-               '(:eval (propertize "%b " 'face 'font-lock-function-name-face
-                                   'help-echo (buffer-file-name)))
+(use-package nerd-icons
+  ;; :custom
+  ;; The Nerd Font you want to use in GUI
+  ;; "Symbols Nerd Font Mono" is the default and is recommended
+  ;; but you can use any other Nerd Font if you want
+  ;; (nerd-icons-font-family "Symbols Nerd Font Mono")
+  )
 
-
-               " [" ;; insert vs overwrite mode, input-method in a tooltip
-               '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
-                                   'face 'font-lock-preprocessor-face
-                                   'help-echo (concat "Buffer is in "
-                                                      (if overwrite-mode
-                                                          "overwrite"
-                                                        "insert") " mode")))
-
-               ;; was this buffer modified since the last save?
-               '(:eval (when (buffer-modified-p)
-                         (concat ","  (propertize "Mod"
-                                                  'face 'font-lock-function-name-face
-                                                  'help-echo "Buffer has been modified"))))
-
-               ;; is this buffer read-only?
-               '(:eval (when buffer-read-only
-                         (concat ","  (propertize "RO"
-                                                  'face 'font-lock-type-face
-                                                  'help-echo "Buffer is read-only"))))
-               "] "
-
-
-               ;; relative position, size of file
-               "["
-               (propertize "%p" 'face 'font-lock-function-name-face) ;; % above top
-               "/"
-               (propertize "%I" 'face 'font-lock-function-name-face) ;; size
-               "] "
-
-               ;; the current major mode for the buffer.
-               '(:eval (propertize "%m" 'face 'font-lock-string-face
-                                   'help-echo buffer-file-coding-system))
-
-               "%1 "
-               my-flycheck-mode-line
-               "%1 "
-               ;; evil state
-               '(:eval evil-mode-line-tag)
-
-               ;; minor modes
-               ;;minor-mode-alist
-			   minions-mode-line-modes
-               " "
-               ;; git info
-               `(vc-mode vc-mode)
-
-               " "
-
-               ;; global-mode-string goes in mode-line-misc-info
-               mode-line-misc-info
-
-               (mode-line-fill 'mode-line 20)
-
-               ;; line and column
-               "(" ;; '%02' to set to 2 chars at least; prevents flickering
-               (propertize "%02l" 'face 'font-lock-function-name-face) ","
-               (propertize "%02c" 'face 'font-lock-function-name-face)
-               ") "
-
-               '(:eval (buffer-encoding-abbrev))
-               mode-line-end-spaces
-               ;; add the time, with the date and the emacs uptime in the tooltip
-               ;; '(:eval (propertize (format-time-string "%H:%M")
-               ;;                     'help-echo
-               ;;                     (concat (format-time-string "%c; ")
-               ;;                             (emacs-uptime "Uptime:%hh"))))
-               ))
+(use-package doom-modeline
+  :ensure t
+  :init
+  (setq nerd-icons-color-icons nil)
+  (doom-modeline-mode 1)
+  )
 
 (provide 'init-ui)
