@@ -63,4 +63,9 @@
 (when (file-exists-p custom-file)
     (load-file custom-file))
 
+(use-package emacs
+  :custom
+  (help-window-select t "Switch to help buffers automatically")
+  )
+
 (provide 'init-custom)
