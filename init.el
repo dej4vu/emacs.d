@@ -53,6 +53,7 @@
 (require 'init-exec-path)
 (require 'init-yas)
 (require 'init-llm)
+(require 'init-csv)
 
 (when (file-exists-p custom-file)
   (load custom-file))
