@@ -17,6 +17,9 @@
 	;;("M-x" . helm-M-x)
 	)
   )
+(use-package helm-xref
+  :after helm
+  :ensure t)
 
 ;; helm-smex
 ;;(use-package helm-smex
