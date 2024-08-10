@@ -10,6 +10,7 @@
   (setq evil-symbol-word-search t)
   ;; Give us back Ctrl+U for vim emulation
   (setq evil-want-C-u-scroll t)
+  (evil-set-initial-state 'gptel-context-buffer-mode 'emacs)
   )
 
 (use-package undo-tree
