@@ -54,6 +54,7 @@
 (require 'init-yas)
 (require 'init-llm)
 (require 'init-csv)
+(require 'init-lua)
 
 (when (file-exists-p custom-file)
   (load custom-file))

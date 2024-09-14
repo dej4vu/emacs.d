@@ -74,6 +74,8 @@
 (setq-default
  ; no share system clipboard
  x-select-enable-clipboard nil
+
+ ;; disable backup files
  make-backup-files nil
  auto-save-default nil
  tab-width 4)
