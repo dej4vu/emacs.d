@@ -17,6 +17,7 @@
 
 
 ;;以下配置是处理 emacs 行尾符合问题
+;;当前已禁用x-select-enable-clipboard, 如需同步系统粘贴板需激活该项
 ;;https://emacs-china.org/t/topic/20161
 (set-display-table-slot standard-display-table 'truncation 32)
 (set-display-table-slot standard-display-table 'wrap 32)
