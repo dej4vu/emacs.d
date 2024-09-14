@@ -15,18 +15,30 @@
   (menu-bar-mode -1)
   )
 
-(defun prettify-continuation-indocator (&optional dummy)
-  (ignore dummy)
-  (when buffer-display-table
-    (set-display-table-slot buffer-display-table 'wrap ?↩)))
 
-(unless window-system
-  (set-display-table-slot standard-display-table 'wrap ?↩)
-  (add-hook 'window-configuration-change-hook 'prettify-continuation-indocator)
-  ;; 如果还有问题，试着启用以下设置
-  ;; (with-eval-after-load 'page-break-lines
-  ;;   (add-hook 'page-break-lines-mode-hook 'prettify-continuation-indocator))
-  )
+;;以下配置是处理 emacs 行尾符合问题
+;;当前已禁用x-select-enable-clipboard, 如需同步系统粘贴板需激活该项
+;;https://emacs-china.org/t/topic/20161
+(set-display-table-slot standard-display-table 'truncation 32)
+(set-display-table-slot standard-display-table 'wrap 32)
+
+(defun my/display-truncation-and-wrap-indicator-as-whitespace ()
+    (when (not (char-table-p buffer-display-table))
+        (setq buffer-display-table (make-display-table)))
+    (set-display-table-slot buffer-display-table 'truncation 32)
+    (set-display-table-slot buffer-display-table 'wrap 32))
+
+
+(add-hook 'prog-mode-hook #'my/display-truncation-and-wrap-indicator-as-whitespace)
+(add-hook 'text-mode-hook #'my/display-truncation-and-wrap-indicator-as-whitespace)
+
+;;(unless window-system
+;;  (set-display-table-slot standard-display-table 'wrap ?↩)
+;;  (add-hook 'window-configuration-change-hook 'prettify-continuation-indocator)
+;;  ;; 如果还有问题，试着启用以下设置
+;;  ;; (with-eval-after-load 'page-break-lines
+;;  ;;   (add-hook 'page-break-lines-mode-hook 'prettify-continuation-indocator))
+;;  )
 
 (when (display-graphic-p)
   ;; disable scroll bar
@@ -294,6 +306,10 @@
   :init
   (setq nerd-icons-color-icons nil)
   (doom-modeline-mode 1)
+  )
+
+(use-package xclip
+  :ensure t
   )
 
 (provide 'init-ui)
