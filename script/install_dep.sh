@@ -1,5 +1,5 @@
 #!/bin/sh
-tmp=$(mktemp -d -t go-build)
+tmp=$(mktemp -d)
 dst="${1:-$HOME/bin}"
 
 #go env setup
