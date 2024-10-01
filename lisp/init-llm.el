@@ -3,11 +3,11 @@
   :defer t
   :init
   (setq
-  gptel-model "qwen2:7b"
+  gptel-model "qwen2.5:7b"
   gptel-backend (gptel-make-ollama "Ollama"
                  :host "localhost:11434"
                  :stream t
-                 :models '("qwen2:7b")))
+                 :models '("qwen2.5:7b")))
   :config
   (setq gptel-api-key "your key")
   (setq gptel-log-level 'debug)
