@@ -55,6 +55,7 @@
 (require 'init-llm)
 (require 'init-csv)
 (require 'init-lua)
+(require 'init-json)
 
 (when (file-exists-p custom-file)
   (load custom-file))
