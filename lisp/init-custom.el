@@ -68,4 +68,7 @@
   (help-window-select t "Switch to help buffers automatically")
   )
 
+;; https://www.reddit.com/r/emacs/comments/1kq6i4f/magit_not_working_after_recent_update_function/
+(setq package-install-upgrade-built-in t)
+
 (provide 'init-custom)

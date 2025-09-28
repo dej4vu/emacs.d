@@ -2,7 +2,6 @@
 (use-package go-mode
   :hook ((go-mode . (lambda ()
                       (lsp-deferred)
-                      (lsp-ui-doc-mode)
                       (wh/set-go-tab-width)
                       (my-go-mode-hook)
                       (company-mode))))

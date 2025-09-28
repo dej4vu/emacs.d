@@ -27,6 +27,7 @@
 (require 'init-package)
 
 ;;(require 'init-elpa)
+(require 'init-straight)
 (require 'init-utils)
 (require 'init-editing-utils)
 (require 'init-evil)
