@@ -13,6 +13,8 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;;(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+;; avoid multiple versions of the same packages being loaded
+(setq package-enable-at-startup nil)
 
 ;; Constants
 (require 'init-variables)
@@ -27,6 +29,7 @@
 (require 'init-package)
 
 ;;(require 'init-elpa)
+(require 'init-straight)
 (require 'init-utils)
 (require 'init-editing-utils)
 (require 'init-evil)
