@@ -45,7 +45,7 @@
   (setq auto-package-update-delete-old-versions t
 		auto-package-update-interval 30
 	    auto-package-update-hide-results t)
-  (auto-package-update-maybe)
+  ;; (auto-package-update-maybe)  ; disabled: no auto package updates
   (defalias 'upgrade-packages #'auto-package-update-now))
 
 (use-package auto-compile

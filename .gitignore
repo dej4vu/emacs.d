@@ -1,0 +1,25 @@
+# Emacs-generated state
+.cache/
+auto-save-list/
+eshell/
+games/
+history
+projects
+recentf
+smex-items
+var/
+
+# Package and build artifacts
+*.elc
+elpa/
+straight/
+transient/
+tree-sitter/
+
+# Tool state
+.aider.chat.history.md
+.aider.input.history
+.aider.tags.cache.v3/
+.lsp-session-v1
+.mc-lists.el
+company-statistics-cache.el
