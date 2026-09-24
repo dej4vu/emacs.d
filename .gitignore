@@ -16,7 +16,7 @@ straight/build/
 straight/build-cache.el
 straight/repos/
 # Keep straight lockfile for reproducibility
-!straight/default.el
+!straight/versions/
 transient/
 tree-sitter/
 

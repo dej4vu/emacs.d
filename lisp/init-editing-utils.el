@@ -10,7 +10,6 @@
 
 ;; smartparens
 (use-package smartparens
-  
   :hook (prog-mode text-mode markdown-mode) ;; add `smartparens-mode` to these hooks
   :config
   ;; load default config
@@ -18,17 +17,16 @@
 
 ;; clang-format
 (use-package clang-format
-  
- )
+  :defer t
+  )
 
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 
 ;; golden-ratio-mode
 (use-package golden-ratio
-  
+  :defer t
   :init
   (golden-ratio-mode +1)
-  
   :config
   (setq golden-ratio-extra-commands
 	  (append golden-ratio-extra-commands
