@@ -1,6 +1,6 @@
-;; rainbow-delimiters
+;;; init-editing-utils.el --- Core editing utilities -*- lexical-binding: t; -*-
+
 (use-package rainbow-delimiters
-  :ensure t
   :hook (prog-mode . rainbow-delimiters-mode)
   :init
   (outline-minor-mode +1)
@@ -9,8 +9,8 @@
 (show-paren-mode +1)
 
 ;; smartparens
-(use-package smartparens-mode
-  :ensure smartparens  ;; install the package
+(use-package smartparens
+  
   :hook (prog-mode text-mode markdown-mode) ;; add `smartparens-mode` to these hooks
   :config
   ;; load default config
@@ -18,18 +18,17 @@
 
 ;; clang-format
 (use-package clang-format
-  :ensure t
-  :defer t
+  
  )
 
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 
 ;; golden-ratio-mode
 (use-package golden-ratio
-  :ensure t
+  
   :init
   (golden-ratio-mode +1)
-  :defer t
+  
   :config
   (setq golden-ratio-extra-commands
 	  (append golden-ratio-extra-commands
@@ -59,14 +58,12 @@
 
 ;; evil-surround
 (use-package evil-surround
-  :ensure t
   :init
   (global-evil-surround-mode +1))
 
 ;; evil-numbers
 ;; Increment / Decrement binary, octal, decimal and hex literals
 (use-package evil-numbers
-  :ensure t
   :bind(
   ("C-c +" . evil-numbers/inc-at-pt)
   ("C-c -" . evil-numbers/dec-at-pt)))
@@ -87,7 +84,6 @@
 
 ;; multiple-cursors
 (use-package multiple-cursors
-  :ensure t
   :bind(
     ("C->" . mc/mark-next-like-this)
 	("C-<" . mc/mark-previous-like-this)
@@ -96,3 +92,4 @@
 
 
 (provide 'init-editing-utils)
+;;; init-editing-utils.el ends here

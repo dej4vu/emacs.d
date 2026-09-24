@@ -1,3 +1,5 @@
+;;; init-vc.el --- Version control configuration -*- lexical-binding: t; -*-
+
 ;; 1. 锁定依赖包 transient 至稳定版 (v0.7.8)
 (straight-use-package
  '(transient :type git :host github :repo "magit/transient" :commit "5054eb5e6"))
@@ -20,3 +22,5 @@
   (global-diff-hl-mode))
 
 (provide 'init-vc)
+
+;;; init-vc.el ends here

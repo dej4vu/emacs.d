@@ -1,3 +1,5 @@
+;;; init-variables.el --- Base variables -*- lexical-binding: t; -*-
+
 (defconst user-cache-directory
   (file-name-as-directory (concat user-emacs-directory ".cache"))
   "My Emacs storage area for persistent files.")
@@ -5,3 +7,5 @@
 (make-directory user-cache-directory t)
 
 (provide 'init-variables)
+
+;;; init-variables.el ends here

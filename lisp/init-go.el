@@ -1,3 +1,5 @@
+;;; init-go.el --- Go mode configuration -*- lexical-binding: t; -*-
+
 ;;https://github.com/CSRaghunandan/.emacs.d/blob/master/setup-files/setup-go.el
 (use-package go-mode
   :hook ((go-mode . (lambda ()
@@ -28,3 +30,5 @@
 (use-package go-tag)
 
 (provide 'init-go)
+
+;;; init-go.el ends here

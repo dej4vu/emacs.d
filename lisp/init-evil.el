@@ -1,8 +1,10 @@
-;; evil
+;;; init-evil.el --- Evil mode configuration -*- lexical-binding: t; -*-
+
 (use-package evil
-  :ensure t
-  :init 
+  :init
   (evil-mode +1)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-integration t)
   :config
   (setcdr evil-insert-state-map nil)
   ;; @see https://bitbucket.org/lyro/evil/issue/360/possible-evil-search-symbol-forward
@@ -14,7 +16,6 @@
   )
 
 (use-package undo-tree
-  :ensure t
   :init
   (global-undo-tree-mode)
   :config
@@ -24,3 +25,4 @@
 
 
 (provide 'init-evil)
+;;; init-evil.el ends here

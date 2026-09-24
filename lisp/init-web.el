@@ -1,3 +1,5 @@
+;;; init-web.el --- Web mode configuration -*- lexical-binding: t; -*-
+
 ;; web mode
 (use-package web-mode
   :mode(("\\.phtml\\'" . web-mode)
@@ -10,3 +12,5 @@
 		("\\.html?\\'" . web-mode)))
 
 (provide 'init-web)
+
+;;; init-web.el ends here

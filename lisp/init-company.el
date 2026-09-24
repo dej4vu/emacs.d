@@ -1,3 +1,5 @@
+;;; init-company.el --- Company completion configuration -*- lexical-binding: t; -*-
+
 (use-package company
   :bind
   (:map company-active-map
@@ -62,3 +64,5 @@
   (when (is-linux-p)
     (company-quickhelp-mode)))
 (provide 'init-company)
+
+;;; init-company.el ends here
