@@ -1,3 +1,5 @@
+;;; init-utils.el --- Utility functions -*- lexical-binding: t; -*-
+
 (if (fboundp 'with-eval-after-load)
     (defalias 'after-load 'with-eval-after-load)
   (defmacro after-load (feature &rest body)
@@ -16,3 +18,5 @@
     (add-to-list 'auto-mode-alist (cons pattern mode))))
 
 (provide 'init-utils)
+
+;;; init-utils.el ends here

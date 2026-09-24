@@ -9,10 +9,14 @@ recentf
 smex-items
 var/
 
-# Package and build artifacts
+# Package and build artifacts (straight.el)
 *.elc
 elpa/
-straight/
+straight/build/
+straight/build-cache.el
+straight/repos/
+# Keep straight lockfile for reproducibility
+!straight/versions/
 transient/
 tree-sitter/
 

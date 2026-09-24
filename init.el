@@ -1,66 +1,67 @@
+;;; init.el --- Dej4vu Emacs configuration -*- lexical-binding: t; -*-
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
-;;(setq debug-on-error t)
 (let ((minver "29.3"))
   (when (version< emacs-version minver)
     (error "This config requires Emacs v%s or higher" minver)))
+
 (setq emacs-load-start-time (current-time))
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-
-;;(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-;; avoid multiple versions of the same packages being loaded
-(setq package-enable-at-startup nil)
 
 ;; Constants
 (require 'init-variables)
 
-;; Customization
+;; Package management (straight.el, must come before any use-package)
+(require 'init-straight)
+
+;; Customization (uses use-package, so after straight)
 (require 'init-custom)
 
-;; Functions
+;; Utility functions
+(require 'init-utils)
 (require 'init-funcs)
 
-;; Packages
-(require 'init-package)
-
-;;(require 'init-elpa)
-(require 'init-straight)
-(require 'init-utils)
+;; Core editing
 (require 'init-editing-utils)
 (require 'init-evil)
+(require 'init-exec-path)
+
+;; UI
 (require 'init-themes)
-(require 'init-lsp)
 (require 'init-ui)
+(require 'init-modeline)
+
+;; Minibuffer completion
+(require 'init-completion)
+
+;; Code completion
 (require 'init-company)
+
+;; IDE
+(require 'init-lsp)
 (require 'init-flycheck)
-(require 'init-helm)
-(require 'init-dict)
-(require 'init-yaml)
+(require 'init-yas)
+
+;; Languages
 (require 'init-go)
 (require 'init-python)
 (require 'init-protobuf)
 (require 'init-markdown)
-(require 'init-docker)
-(require 'init-web)
-(require 'init-php)
-(require 'init-lisp)
-(require 'init-js)
-(require 'init-avy)
-(require 'init-thrift)
-(require 'init-vc)
-(require 'init-exec-path)
-(require 'init-yas)
-(require 'init-llm)
+(require 'init-yaml)
+(require 'init-json)
 (require 'init-csv)
 (require 'init-lua)
-(require 'init-json)
+(require 'init-js)
+(require 'init-web)
+(require 'init-php)
+(require 'init-docker)
+(require 'init-thrift)
+(require 'init-lisp)
 
-(when (file-exists-p custom-file)
-  (load custom-file))
+;; Tools
+(require 'init-dict)
+(require 'init-avy)
+(require 'init-vc)
+(require 'init-llm)
 
 (provide 'init)
+;;; init.el ends here

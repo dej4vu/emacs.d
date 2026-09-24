@@ -1,3 +1,5 @@
+;;; init-flycheck.el --- Flycheck configuration -*- lexical-binding: t; -*-
+
 ;; flycheck
 (use-package flycheck
   :config
@@ -7,3 +9,5 @@
   (setq flycheck-check-syntax-automatically '(idle-change save)))
 
 (provide 'init-flycheck)
+
+;;; init-flycheck.el ends here

@@ -1,3 +1,5 @@
+;;; init-python.el --- Python mode configuration -*- lexical-binding: t; -*-
+
 (use-package lsp-pyright
   :hook (python-mode . (lambda()
                          (require 'lsp-pyright)
@@ -16,3 +18,5 @@
 ;;  (setq python-indent-guess-indent-offset nil)
 ;;  (setq python-shell-completion-native-enable nil))
 (provide 'init-python)
+
+;;; init-python.el ends here
