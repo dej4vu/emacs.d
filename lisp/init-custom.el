@@ -12,6 +12,18 @@
 
 (setq custom-file (expand-file-name "custom.el" user-cache-directory))
 
+(defun dejavu--ensure-custom-file-lexical-binding ()
+  "Ensure the generated `custom-file' has a lexical-binding cookie."
+  (when (and custom-file (file-exists-p custom-file))
+    (with-temp-buffer
+      (insert-file-contents custom-file)
+      (goto-char (point-min))
+      (unless (looking-at-p ";;; \\*\\*\\*- lexical-binding:")
+        (insert ";;; -*- lexical-binding: t -*-\n")
+        (write-region nil nil custom-file nil 0)))))
+
+(dejavu--ensure-custom-file-lexical-binding)
+
 (when (file-exists-p custom-file)
   (load-file custom-file))
 
